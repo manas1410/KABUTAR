@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1093676646784",
+    "project_id": "kabutar10",
+    "storage_bucket": "kabutar10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093676646784:android:10fae30b9c932a18fbc165",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093676646784-vjresg2jemsm6vmnipjpt849aqk9stmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6izHraj_O1Ycp3trb0KGuJa08Gi5oAxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093676646784-vjresg2jemsm6vmnipjpt849aqk9stmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
