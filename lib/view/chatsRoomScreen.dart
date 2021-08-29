@@ -1,5 +1,7 @@
 import 'package:chat_app/services/auth.dart';
+import 'package:chat_app/view/search.dart';
 import 'package:chat_app/view/signin.dart';
+import 'package:chat_app/widget/widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoom extends StatefulWidget {
@@ -13,34 +15,14 @@ class _ChatRoomState extends State<ChatRoom>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar:AppBar(
-        toolbarHeight: 60,
-        backgroundColor: Color(0xff2A75BC),
-        title: Image.asset("assets/images/chat_app_logo.png",
-          height: 60,width: 9999,
-          alignment: Alignment.centerLeft,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(40),
-          ),
-        ),
-        actions: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: GestureDetector(
-              onTap: (){
-                authMethods.signOut();
-                Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (context) => SignIn()));
-              },
-              child: Icon(
-                  Icons.exit_to_app,
-                size: 30,
-              ),
-            ),
-          )
-        ],
+      appBar:appBarMain1(context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => SearchScreen()
+          ));
+        },
+        child: Icon(Icons.search),
       ),
     );
   }

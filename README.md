@@ -1,4 +1,4 @@
-# KABUTAR
+# chat_app
 
 A new Flutter project.
 
