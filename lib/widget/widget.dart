@@ -1,3 +1,4 @@
+import 'package:chat_app/helper/authentication.dart';
 import 'package:chat_app/services/auth.dart';
 import 'package:chat_app/view/signin.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ PreferredSizeWidget appBarMain1(BuildContext context){
           onTap: (){
             authMethods.signOut();
             Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (context) => SignIn()));
+                builder: (context) => Authenticate()));
           },
           child: Icon(
             Icons.exit_to_app,

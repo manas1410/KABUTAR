@@ -1,10 +1,13 @@
 import 'package:chat_app/services/auth.dart';
+import 'package:chat_app/services/database.dart';
 import 'package:chat_app/view/chatsRoomScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/widget/widget.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+  //const SignUp({Key? key}) : super(key: key);
+  final Function toggle;
+  SignUp(this.toggle);
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -14,6 +17,7 @@ class _SignUpState extends State<SignUp>{
   bool isLoading = false;
 
   AuthMethods authMethods =  new AuthMethods();
+  DatabaseMethods databaseMethods = new DatabaseMethods();
 
   final formKey = GlobalKey<FormState>();
   TextEditingController userNameTextEditingController = new TextEditingController();
@@ -28,6 +32,13 @@ class _SignUpState extends State<SignUp>{
       authMethods.signUpwithEmailAndPassword
         (emailTextEditingController.text, passwordTextEditingController.text).then((value){
           //print("${value.uid}");
+
+        Map<String, String> userInfoMap = {
+          "name": userNameTextEditingController.text,
+          "email": emailTextEditingController.text,
+        };
+
+        databaseMethods.uploadUserInfo(userInfoMap);
           Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) => ChatRoom()));
       });
@@ -150,10 +161,18 @@ class _SignUpState extends State<SignUp>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Already have account? ",style: mediumTextFieldStyle(),),
-                    Text("Sign Now ",style: TextStyle(
-                      fontSize: 17,
-                      decoration: TextDecoration.underline,
-                    ),
+                    GestureDetector(
+                      onTap: (){
+                        widget.toggle();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Text("Sign Now ",style: TextStyle(
+                          fontSize: 17,
+                          decoration: TextDecoration.underline,
+                        ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
