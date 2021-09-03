@@ -7,6 +7,11 @@ class DatabaseMethods{
         .where("name", isEqualTo: username)
         .get();
   }
+  getUserByUseremail(String useremail) async{
+    return await FirebaseFirestore.instance.collection("users")
+        .where("email", isEqualTo: useremail)
+        .get();
+  }
   uploadUserInfo(userMap){
     FirebaseFirestore.instance.collection("users")
         .add(userMap);
@@ -18,4 +23,23 @@ class DatabaseMethods{
           print(e.toString());
     });
   }
+
+  
+  addConversationMessages(String chatRoomId, messageMap){
+    FirebaseFirestore.instance.collection("ChatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+        .add(messageMap).catchError((e){
+          print(e.toString());
+    });
+  }
+
+  getConversationMessages(String chatRoomId){
+    FirebaseFirestore.instance.collection("ChatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+        .snapshots();
+  }
+
+
 }

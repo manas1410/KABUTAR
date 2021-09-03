@@ -48,6 +48,24 @@ PreferredSizeWidget appBarMain1(BuildContext context){
   );
 }
 
+PreferredSizeWidget appBarMain2(BuildContext context){
+  AuthMethods authMethods =new AuthMethods();
+  return AppBar(
+    toolbarHeight: 60,
+    backgroundColor: Color(0xff2A75BC),
+    title: Image.asset("assets/images/chat_app_logo.png",
+      height: 60,width: 9999,
+      alignment: Alignment.centerLeft,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(40),
+      ),
+    ),
+
+  );
+}
+
 InputDecoration textFieldInputDecoration(String xtext){
   return InputDecoration(
     hintText: xtext,
