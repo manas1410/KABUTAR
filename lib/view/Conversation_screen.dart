@@ -21,30 +21,45 @@ class _ConversationScreenState extends State<ConversationScreen> {
   Stream? chatMessageStream;
   //QuerySnapshot? snapshot;
 
+
   Widget ChatMessageList(){
   return StreamBuilder(
     stream: chatMessageStream,
-    builder: (context,snapshot){
-      return ListView.builder(
-          itemCount:snapshot.data!.length,
-          itemBuilder: (context,index){
-            return 
-          });
+    builder: (context, AsyncSnapshot<dynamic> snapshot){
+      if (snapshot.hasData) {
+        //print(chatMessageStream);
+        return ListView.builder(
+            itemCount: snapshot.data.size,
+            itemBuilder: (context, index) {
+              return MessageTile(
+                  snapshot.data!.docs[index]["message"],
+                  snapshot.data!.docs[index]["sendBy"] == Constants.myName
+              );
+            });
+      }
+      else{
+        print("chatMessageStream");
+        print(chatMessageStream);
+        return Container();
+      }
     },
   );
   }
   sendMessage(){
     if (messageController.text.isNotEmpty){
-      Map<String,String> messageMap = {
+      Map<String,dynamic> messageMap = {
         "message": messageController.text,
         "sendBy" : Constants.myName,
+        "time" : DateTime.now().millisecondsSinceEpoch
       };
       databaseMethods.addConversationMessages(widget.chatRoomId, messageMap);
+      messageController.text ="";
     }
   }
 
   @override
   void initState() {
+    //print("haha"+ widget.chatRoomId);
     databaseMethods.getConversationMessages(widget.chatRoomId).then((value){
       setState(() {
         chatMessageStream =value;
@@ -52,6 +67,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
     });
     super.initState();
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +78,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
       body: Container(
         child: Stack(
           children: [
+            ChatMessageList(),
             Container(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -116,10 +135,50 @@ class _ConversationScreenState extends State<ConversationScreen> {
   }
 }
 class MessageTile extends StatelessWidget {
-  const MessageTile({Key? key}) : super(key: key);
-
+  //const MessageTile({Key? key}) : super(key: key);
+  final String message;
+  final bool isSendByMe;
+  MessageTile(this.message,this.isSendByMe);
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      padding: EdgeInsets.only(left: isSendByMe ? 0:24 ,
+          right: isSendByMe ? 24:0),
+      margin: EdgeInsets.symmetric(vertical: 4),
+      width: MediaQuery.of(context).size.width,
+      alignment: isSendByMe ? Alignment.centerRight: Alignment.centerLeft,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: isSendByMe?
+            [
+              const Color(0xff007EF4),
+              const Color(0xff2A75BC)
+            ]:[
+              const Color(0xff007EF4),
+              const Color(0xff2A75BC)
+              ]
+          ),
+          borderRadius: isSendByMe?
+          BorderRadius.only(
+            topLeft: Radius.circular(23),
+            topRight: Radius.circular(23),
+            bottomLeft: Radius.circular(23)
+          ):
+          BorderRadius.only(
+              topLeft: Radius.circular(23),
+              topRight: Radius.circular(23),
+              bottomRight: Radius.circular(23)
+          )
+
+        ),
+        child:Text(message,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16
+          )),
+      ),
+    );
   }
 }

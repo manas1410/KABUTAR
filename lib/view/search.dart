@@ -41,12 +41,15 @@ class _SearchScreenState extends State<SearchScreen>{
 
     if (username != Constants.myName){
       String chatRoomId = getChatRoomId(username,Constants.myName);
+      //print(username);
+      //print(Constants.myName);
 
       List<String> users = [username,Constants.myName];
       Map<String, dynamic> chatRoomMap = {
         "users" : users,
         "chatsroomid" : chatRoomId,
       };
+      //print(chatRoomId);
       DatabaseMethods().createChatRoom(chatRoomId,chatRoomMap);
       Navigator.push(context,
           MaterialPageRoute(
