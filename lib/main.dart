@@ -19,16 +19,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   bool? userIsLoggedIn;
 
   @override
-  void initState(){
+  void initState() {
     getLoggedInState();
     super.initState();
   }
-  getLoggedInState() async{
-    await HelperFunctions.getUserLoggedInSharedPreference().then((value){
+
+  getLoggedInState() async {
+    await HelperFunctions.getUserLoggedInSharedPreference().then((value) {
       setState(() {
         userIsLoggedIn = value!;
       });
@@ -38,16 +38,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'KABUTAR',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color(0xff145C9E),
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
-      home: userIsLoggedIn != null ?
-      userIsLoggedIn! ?ChatRoom():Authenticate()
-          :Authenticate(),
+      home: userIsLoggedIn != null
+          ? userIsLoggedIn!
+              ? ChatRoom()
+              : Authenticate()
+          : Authenticate(),
     );
   }
 }
@@ -65,4 +67,3 @@ class _IamBlankState extends State<IamBlank> {
     return Container();
   }
 }
-
