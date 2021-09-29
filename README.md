@@ -1,4 +1,7 @@
-# chat_app
+# KABUTAR
+A Real Time messaging App.
+Made by using Flutter and Firebase(Authentication) and Firetore(Database).
+
 
 A new Flutter project.
 
