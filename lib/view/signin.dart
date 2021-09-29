@@ -128,10 +128,7 @@ class _SignInState extends State<SignIn> {
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      const Color(0xff997FF4),
-                      const Color(0xff2A75BC)
-                    ]),
+                    color: Color(0xff2A60BC),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
@@ -150,19 +147,24 @@ class _SignInState extends State<SignIn> {
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    const Color(0xFFFF0000),
-                    const Color(0xFFFF9000),
-                    const Color(0xFF009000),
-                    Colors.blue,
-                  ]),
+                    color:Color(0xff2A55BC),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Text("Sign In with Google",
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
-                    )),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width:50 ,
+                    ),
+                Image.asset("assets/images/google.png",
+                  height: 30,
+                ),
+                    Text("  Sign In with Google",
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 8,

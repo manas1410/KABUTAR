@@ -73,7 +73,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.white,
       appBar: appBarMain2(context),
       body: Container(
         child: Stack(

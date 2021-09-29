@@ -113,7 +113,7 @@ class _SearchScreenState extends State<SearchScreen>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.white,
       appBar: appBarMain2(context),
       body: Container(
         child: Column(

@@ -55,7 +55,7 @@ class _ChatRoomState extends State<ChatRoom>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: Colors.white,
       appBar:appBarMain1(context),
       body: chatRoomList(),
       floatingActionButton: FloatingActionButton(
@@ -87,20 +87,25 @@ class ChatRoomsTile extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Colors.blue,
-                  Colors.lightBlueAccent,
-                  Colors.blue,
-                  Colors.lightBlue,
-                  Colors.lightBlueAccent,
-                  Colors.lightBlue,
-                  Colors.blue,
-                  Colors.lightBlueAccent,
-                  Colors.blue
-                ]
-            ),
-            borderRadius: BorderRadius.circular(30)
+            color: Color(0xff2A60BC),
+            borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff2A70BC),
+              offset: const Offset(
+                5.0,
+                5.0,
+              ),
+              blurRadius: 10.0,
+              spreadRadius: 2.0,
+            ), //BoxShadow
+            BoxShadow(
+              color: Colors.white,
+              offset: const Offset(0.0, 0.0),
+              blurRadius: 0.0,
+              spreadRadius: 0.0,
+            ), //BoxShadow
+          ],
         ),
         padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
         child:Row(
